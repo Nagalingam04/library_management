@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Library Home</title>
+    <link rel = "stylesheet" href = "{% static 'library/style.css' %}">
+  </head>
+  <body>
+    <h1>Welcome to the Library</h1>
+    <ul>
+      {% for book in books %}
+        <li>{{ forloop.counter }}.{{ book.title }} by {{ book.author }}</li>
+        <button><a class='button' href = "{% url 'library:edit' book.id %}">Edit</a></button>
+        <button><a class='button' href = "{% url 'library:delete' book.id %}">Delete</a></button>
+      {% endfor %}
+    </ul>
+    <a href = "{% url 'library:add_book' %}">Add a new book</a>
+  </body>
+</html>
